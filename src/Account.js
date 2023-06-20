@@ -6,6 +6,10 @@ class Account {
         this.#balance += sum;
     }
 
+    withdraw(sum) {
+        this.#balance -= sum;
+    }
+
     getBalance() {
         return this.#balance;
     }
