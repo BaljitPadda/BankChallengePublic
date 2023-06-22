@@ -24,7 +24,7 @@ describe('Account Class Tests', () => {
             let actual = account1.getBalance();
 
             // Assert
-            expect(actual).toEqual(expected)
+            expect(actual).toEqual(expected);
 
         }),
 
@@ -41,8 +41,6 @@ describe('Account Class Tests', () => {
 
             // Assert
             expect(account1.getBalance()).toEqual(expected);
-
-            // Clean up
 
         }),
 
@@ -77,7 +75,6 @@ describe('Account Class Tests', () => {
                     account1.deposit(sum);
                 }).toThrowError("Deposit sum must be a positive number greater than 0. Deposit sum cannot be null, undefined, negative etc.");
 
-
         }),
 
 
@@ -93,7 +90,6 @@ describe('Account Class Tests', () => {
                 function () {
                     account1.withdraw(sum);
                 }).toThrowError("Withdraw sum must be a positive number greater than 0. Withdraw sum cannot be null, undefined, negative etc.");
-
 
         }),
 
@@ -111,8 +107,6 @@ describe('Account Class Tests', () => {
                     account1.deposit(sum);
                 }).toThrowError("Deposit sum must be a positive number greater than 0. Deposit sum cannot be null, undefined, negative etc.");
 
-
-
         }),
 
 
@@ -128,8 +122,6 @@ describe('Account Class Tests', () => {
                 function () {
                     account1.withdraw(sum);
                 }).toThrowError("Withdraw sum must be a positive number greater than 0. Withdraw sum cannot be null, undefined, negative etc.");
-
-
 
         }),
 
@@ -147,7 +139,6 @@ describe('Account Class Tests', () => {
                     account1.deposit(sum);
                 }).toThrowError("Deposit sum must be a positive number greater than 0. Deposit sum cannot be null, undefined, negative etc.");
 
-
         }),
 
 
@@ -164,12 +155,68 @@ describe('Account Class Tests', () => {
                     account1.withdraw(sum);
                 }).toThrowError("Withdraw sum must be a positive number greater than 0. Withdraw sum cannot be null, undefined, negative etc.");
 
+        }),
 
+
+        it("should not allow you to deposit a sum of 0", () => {
+
+            // Arrange
+            let account1 = new Account();
+            let sum = 0;
+
+            // Act
+            // Assert
+            expect(
+                function () {
+                    account1.deposit(sum);
+                }).toThrowError("Deposit sum must be a positive number greater than 0. Deposit sum cannot be null, undefined, negative etc.")
+
+
+        }),
+
+
+        it("should not allow you to withdraw a sum of 0", () => {
+
+            // Arrange
+            let account1 = new Account();
+            let sum = 0;
+
+            // Act
+            // Assert
+            expect(
+                function () {
+                    account1.withdraw(sum);
+                }).toThrowError("Withdraw sum must be a positive number greater than 0. Withdraw sum cannot be null, undefined, negative etc.")
+
+
+        }),
+
+
+        it("should store each deposit made on the account, as a transaction", () => {
+
+            // Arrange
+            let account1 = new Account();
+            let sum = 20;
+
+            // Act
+            account1.deposit(sum);
+            // Assert
+            expect(account1.transactions).toHaveSize(1);
+        }),
+
+
+        it("should store each withdrawal made on the account, as a transaction", () => {
+
+            // Arrange
+            let account1 = new Account();
+            let sum = 20;
+
+            // Act
+            account1.withdraw(sum);
+            // Assert
+            expect(account1.transactions).toHaveSize(1);
         });
 
 
-
-
 });
-
 
