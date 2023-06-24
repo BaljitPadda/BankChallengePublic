@@ -40,6 +40,23 @@ describe("Transaction Class Tests", () => {
             function () {
                 new Transaction(Date, "balloons", 500);
             }).toThrowError("Transactions can only be of type credit or debit.")
-    });
+    }),
+
+
+        it("should ensure that the transaction amount is a numeric value greater than 0", () => {
+
+            // Arrange
+            // Act
+            // Assert
+            expect(
+                function () {
+                    new Transaction(Date, "Credit", "notNumericValue")
+                }).toThrowError("Transaction amount must be a numeric value greater than 0")
+
+
+        });
+
 
 });
+
+// Add another test to check that date is a date!
