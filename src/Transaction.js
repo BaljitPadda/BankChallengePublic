@@ -10,6 +10,10 @@ class Transaction {
 
     constructor(date, typeOfTransaction, amount) {
 
+        if (!(date instanceof Date)) {
+            throw new Error("Date argument must be of type Date.")
+        }
+
         if (typeOfTransaction != "Credit" && typeOfTransaction != "Debit") {
             throw new Error("Transactions can only be of type credit or debit.")
         }
