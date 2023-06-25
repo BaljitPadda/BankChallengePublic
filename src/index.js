@@ -2,15 +2,23 @@ import Account from "./Account.js";
 import { Statement } from "./Statement.js";
 
 let accountBP = new Account();
+let startingBalance = accountBP.getBalance()
+console.log(startingBalance)
 
-accountBP.deposit(1000)
-accountBP.deposit(2000);
-accountBP.withdraw(500);
-accountBP.deposit(100, new Date(2012, 0, 10));
+accountBP.withdraw(500, new Date(2012, 0, 14));
+accountBP.deposit(1000, new Date(2012, 0, 10));
+accountBP.deposit(2000, new Date(2012, 0, 13));
+
+
 
 console.log(accountBP.getBalance());
 console.log(" ")
 
 
 console.log(Statement.print(accountBP));
+
+let date = new Date(2023, 5, 25);
+
+console.log(date.toLocaleDateString("en-GB"));
+
 

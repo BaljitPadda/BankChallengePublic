@@ -15,10 +15,10 @@ class Account {
     }
 
 
-    withdraw(sum) {
+    withdraw(sum, date) {
         if (sum > 0) {
             this.#balance -= sum;
-            let transaction = new Transaction(new Date(), "Debit", sum);
+            let transaction = new Transaction(date ? date : new Date(), "Debit", sum);
             this.transactions.push(transaction);
         } else throw new Error("Withdraw sum must be a positive number greater than 0. Withdraw sum cannot be null, undefined, negative etc.")
     }

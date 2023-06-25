@@ -1,4 +1,6 @@
+
 class Transaction {
+
 
     #date
 
@@ -33,7 +35,6 @@ class Transaction {
     getAmount() {
         return this.#amount;
     }
-
 
 }
 
