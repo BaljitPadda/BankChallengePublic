@@ -17,8 +17,6 @@ console.log(" ")
 
 console.log(Statement.print(accountBP));
 
-let date = new Date(2023, 5, 25);
 
-console.log(date.toLocaleDateString("en-GB"));
 
 

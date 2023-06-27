@@ -57,10 +57,11 @@ describe("Transaction Class Tests", () => {
         }),
 
 
-        it("should throw an error if invalid date type is provided", () => {
+        it("should throw an error if an invalid date type is provided", () => {
 
             // Arrange
-            let date = "Not a date (just mates)"
+            let date = "Not a date";
+
             // Act
             // Assert
             expect(

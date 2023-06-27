@@ -201,7 +201,7 @@ describe('Account Class Tests', () => {
             // Act
             account1.deposit(sum);
             // Assert
-            expect(account1.transactions).toHaveSize(1);
+            expect(account1.getTransactions()).toHaveSize(1);
         }),
 
 
@@ -214,10 +214,8 @@ describe('Account Class Tests', () => {
             // Act
             account1.withdraw(sum);
             // Assert
-            expect(account1.transactions).toHaveSize(1);
+            expect(account1.getTransactions()).toHaveSize(1);
         });
 
 
 });
-
-// Add another test to make sure you can't withdraw what you don't have, or sort out an overdraft??
