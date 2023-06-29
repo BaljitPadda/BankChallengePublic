@@ -16,6 +16,9 @@ console.log(" ")
 
 
 console.log(Statement.print(accountBP));
+console.log(" ")
+
+
 
 
 

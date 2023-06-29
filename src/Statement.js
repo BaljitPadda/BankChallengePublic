@@ -75,19 +75,18 @@ class Statement {
         }
     }
 
-
     static createCreditRow(transaction, currentBalance) {
         let amount = `${transaction.getAmount().toFixed(2)}`
         let creditColumn = Statement.padString(chalk.green(amount), 7)
         let debitColumn = Statement.padString(" ", 6)
-        return `${transaction.getDate().toLocaleDateString("en-GB")} || ${creditColumn} || ${debitColumn} || ${currentBalance.toFixed(2)}`;
+        return `${transaction.getDate().toLocaleDateString("en-GB")} || ${creditColumn} || ${debitColumn} || ${currentBalance < 0 ? chalk.red(currentBalance.toFixed(2)) : chalk.green(currentBalance.toFixed(2))}`;
     }
 
     static createDebitRow(transaction, currentBalance) {
         let amount = `${transaction.getAmount().toFixed(2)}`
         let debitColumn = Statement.padString(chalk.red(amount), 6)
         let creditColumn = Statement.padString(" ", 7)
-        return `${transaction.getDate().toLocaleDateString("en-GB")} || ${creditColumn} || ${debitColumn} || ${currentBalance.toFixed(2)}`;
+        return `${transaction.getDate().toLocaleDateString("en-GB")} || ${creditColumn} || ${debitColumn} || ${currentBalance < 0 ? chalk.red(currentBalance.toFixed(2)) : chalk.green(currentBalance.toFixed(2))}`;
     }
 
     static padString(string, number) {
