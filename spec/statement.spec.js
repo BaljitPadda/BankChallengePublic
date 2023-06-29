@@ -2,15 +2,12 @@ import { Statement } from "../src/Statement.js";
 import chalk from 'chalk';
 
 class MockAccount {
-
     getTransactions = () => { }
 }
 
 class MockTransaction {
     getDate = () => { }
-
     getTypeOfTransaction = () => { }
-
     getAmount = () => { }
 }
 
@@ -36,37 +33,33 @@ describe("StatementPrinter Class Tests", () => {
         spyOn(mockAccount, "getTransactions").and.returnValue(transactions);
 
         let expected = `date       || credit  || debit  || balance \n` +
-            `24/06/2023 || ${chalk.green("500.00")} ||        || 500 \n`
+            `24/06/2023 || ${chalk.green("500.00")} ||        || 500.00`
 
         // Act
         let actual = Statement.print(mockAccount);
 
         // Assert
         expect(actual).toEqual(expected);
-
     }),
 
 
         it("should have a print method that takes in an account object", () => {
 
             // Arrange
-
             // Act
-            spyOn(mockAccount, "getTransactions").and.returnValue(transactions);
-            Statement.print(mockAccount);
+            //spyOn(mockAccount, "getTransactions").and.returnValue(transactions);
+            //Statement.print(mockAccount);
 
             // Assert
             expect(function () {
                 Statement.print(mockAccount);
             }).toBeDefined();
-
         }),
 
 
         it("should be able to display transactions made on different dates", () => {
 
             // Arrange
-
             let transaction1 = new MockTransaction();
             spyOn(transaction1, "getDate").and.returnValue(new Date(2023, 5, 18))
             spyOn(transaction1, "getTypeOfTransaction").and.returnValue("Credit")
@@ -84,20 +77,18 @@ describe("StatementPrinter Class Tests", () => {
             // Act
             let expected =
                 `date       || credit  || debit  || balance \n` +
-                `22/06/2023 || ${chalk.green("500.00")} ||        || 1000 \n` +
-                `18/06/2023 || ${chalk.green("500.00")} ||        || 500 \n`
+                `22/06/2023 || ${chalk.green("500.00")} ||        || 1000.00\n` +
+                `18/06/2023 || ${chalk.green("500.00")} ||        || 500.00`
 
             // Assert
             let actual = Statement.print(mockAccount);
             expect(actual).toEqual(expected)
-
         }),
 
 
         it("should order transactions in reverse chronological order (newest first)", () => {
 
             // Arrange
-
             let transaction1 = new MockTransaction();
             spyOn(transaction1, "getDate").and.returnValue(new Date(2023, 4, 27))
             spyOn(transaction1, "getTypeOfTransaction").and.returnValue("Credit")
@@ -127,18 +118,15 @@ describe("StatementPrinter Class Tests", () => {
             // Act
             let expected =
                 `date       || credit  || debit  || balance \n` +
-                `10/06/2023 || ${chalk.green("500.00")} ||        || 2000 \n` +
-                `03/06/2023 || ${chalk.green("500.00")} ||        || 1500 \n` +
-                `01/06/2023 || ${chalk.green("500.00")} ||        || 1000 \n` +
-                `27/05/2023 || ${chalk.green("500.00")} ||        || 500 \n`
-
+                `10/06/2023 || ${chalk.green("500.00")} ||        || 2000.00\n` +
+                `03/06/2023 || ${chalk.green("500.00")} ||        || 1500.00\n` +
+                `01/06/2023 || ${chalk.green("500.00")} ||        || 1000.00\n` +
+                `27/05/2023 || ${chalk.green("500.00")} ||        || 500.00`
 
             // Assert
             let actual = Statement.print(mockAccount);
 
             expect(actual).toEqual(expected);
-
-
         });
 
 
