@@ -1,43 +1,108 @@
-# Bank
+# Baljit Padda Bank Challenge Solution
 
-This challenge helps you practice your OO design skills.
-
-You'll work alone, and you'll also review your own code so you can practice reflecting on and improving your own work.
-
-## Specification
-
-### Requirements
-
-* Results of your code should display via the JavaScript console.  (NB: You don't need to implement a command line interface that takes user input from STDIN.)
-* Deposits, withdrawal.
-* Account statement (date, credit or debit amount, balance) printing.
-* Data can be kept in memory (it doesn't need to be stored to a database or anything).
-
-### Acceptance criteria
-
-**Given** a client makes a deposit of 1000 on 10-01-2012  
-**And** a deposit of 2000 on 13-01-2012  
-**And** a withdrawal of 500 on 14-01-2012  
-**When** she prints her bank statement  
-**Then** she would see
-
+## Instructions
 ```
-date       || credit  || debit  || balance
-14/01/2012 ||         || 500.00 || 2500.00
-13/01/2012 || 2000.00 ||        || 3000.00
-10/01/2012 || 1000.00 ||        || 1000.00
+Fork and clone to your machine.
+
+To run tests, please use 'npm test' in the terminal.
+
+To run the index.js file, please use 'node bank-challenge/src/index.js' in the terminal.
+```
+## My Domain Models
+
+Please see below the user stories and domain models I created from the requirements. 
+<br/>
+```
+User story 1: I want to be able to deposit money into a bank account.
+User story 2: I want to be able to withdraw money from a bank account.
+User story 3: I want a bank account to store a list of transactions made.
 ```
 
+| Objects | Properties                        | Messages          | Output               |
+| ------- | --------------------------------- | ----------------- | -------------------- |
+| Account | balance @Integer                  | deposit @Integer  | @Void                |
+|         | transactions @Array[@Transaction] | withdraw @Integer | @Void                |
+|         |                                   | getBalance()      | @Integer             |
+|         |                                   | getTransactions() | @Array[@Transaction] |
 
-#### Standard
-- [ ] Meets the spec
-- [ ] Developed test-first
-- [ ] Passes tests and code is clean and well formatted
-- [ ] Encapsulates adding and storing Transactions in a class
-- [ ] Encapsulates Statement formatting in a class
-- [ ] Encapsulates Transaction data in a class
+<br/>
 
-#### Extended
-- [ ] Can you format the console output?  Credited values should be GREEN and debited values should be RED.  The balance should be GREEN if positive and RED if negative
+```
+User story 4: I want a transaction to have a date, a type and an amount.
+```
 
-You may find this link useful [Output to the command line using NodeJS](https://nodejs.dev/en/learn/output-to-the-command-line-using-nodejs/) - check the formatting section (and this links out to a GitHub doc on the [ANSI color codes](https://gist.github.com/iamnewton/8754917))
+| Objects     | Properties                | Messages               | Output   |
+| ----------- | ------------------------- | ---------------------- | -------- |
+| Transaction | date @Date                | getDate()              | @Date    |
+|             | typeOfTransaction @String | getTypeOfTransaction() | @String  |
+|             | amount @Integer           | getAmount()            | @Integer |
+
+<br/>
+
+```
+User story 5: I want to be able to print a bank account statement containing details of all transactions/each transaction made.
+User story 6: I want the most recent transaction to display first.
+User story 7: I want the statement to be in reverse chronological order.
+User story 8: I want to store the current balance after a transaction is made.
+```
+
+| Objects   | Properties | Messages        | Output  |
+| --------- | ---------- | --------------- | ------- |
+| Statement |            | print(@Account) | @String |
+|           |            |                 |         |
+
+<br/>
+
+* Please Note: for legibility, I have not included all methods of the Statement class in the above domain model. I have included only the main function of the class which is to print a bank account statement. 
+
+<br/>
+
+---
+## Statement Class code snippet (before refactoring):
+I am including this to show what my Statement class looked like before I attempted to refactor. For reference only.
+
+
+```
+Statement Class code snippet (old version, for reference only):
+
+static header = "date       || credit  || debit  || balance ";
+creditColumn = ""
+debitColumn = ""
+currentBalance = 0;
+row = [""];
+
+sortedTransactions.forEach(transaction => {
+    
+                let amount = `${transaction.getAmount().toFixed(2)}`
+    
+                if (transaction.getTypeOfTransaction() == "Credit") {
+                    creditColumn = Statement.padString(chalk.green(amount), 7)
+                    debitColumn = Statement.padString(" ", 6)
+                    currentBalance += transaction.getAmount()
+                }
+    
+                if (transaction.getTypeOfTransaction() == "Debit") {
+                    debitColumn = Statement.padString(chalk.red(amount), 6)
+                    creditColumn = Statement.padString(" ", 7)
+                    currentBalance -= transaction.getAmount()
+                }
+                row.push(`${transaction.getDate().toLocaleDateString("en-GB")} || ${creditColumn} || ${debitColumn} || ${currentBalance} `);
+            });
+    
+            //using reverse() as transactions need to be printed in reverse chronological order, newest to oldest.
+            //using join() to make row (which is an array of strings) into one big string with new lines.
+
+            return header + `\n` + row.reverse().join(`\n`);
+
+```
+
+---
+## References/Sources:
+
+https://www.golinuxcloud.com/javascript-sort-by-date/
+
+https://software.com/en/technical-posts/mocking-calls-with-jasmine 
+(Returning values from Jasmine spies)
+
+https://stackoverflow.com/questions/21589401/javascript-users-incorrect-locale-with-date-formatting
+

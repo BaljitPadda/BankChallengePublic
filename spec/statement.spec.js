@@ -33,7 +33,7 @@ describe("StatementPrinter Class Tests", () => {
         spyOn(mockAccount, "getTransactions").and.returnValue(transactions);
 
         let expected = `date       || credit  || debit  || balance \n` +
-            `24/06/2023 || ${chalk.green("500.00")} ||        || 500.00`
+            `24/06/2023 || ${chalk.green("500.00")} ||        || ${chalk.green("500.00")}`
 
         // Act
         let actual = Statement.print(mockAccount);
@@ -77,8 +77,8 @@ describe("StatementPrinter Class Tests", () => {
             // Act
             let expected =
                 `date       || credit  || debit  || balance \n` +
-                `22/06/2023 || ${chalk.green("500.00")} ||        || 1000.00\n` +
-                `18/06/2023 || ${chalk.green("500.00")} ||        || 500.00`
+                `22/06/2023 || ${chalk.green("500.00")} ||        || ${chalk.green("1000.00")}\n` +
+                `18/06/2023 || ${chalk.green("500.00")} ||        || ${chalk.green("500.00")}`
 
             // Assert
             let actual = Statement.print(mockAccount);
@@ -118,10 +118,10 @@ describe("StatementPrinter Class Tests", () => {
             // Act
             let expected =
                 `date       || credit  || debit  || balance \n` +
-                `10/06/2023 || ${chalk.green("500.00")} ||        || 2000.00\n` +
-                `03/06/2023 || ${chalk.green("500.00")} ||        || 1500.00\n` +
-                `01/06/2023 || ${chalk.green("500.00")} ||        || 1000.00\n` +
-                `27/05/2023 || ${chalk.green("500.00")} ||        || 500.00`
+                `10/06/2023 || ${chalk.green("500.00")} ||        || ${chalk.green("2000.00")}\n` +
+                `03/06/2023 || ${chalk.green("500.00")} ||        || ${chalk.green("1500.00")}\n` +
+                `01/06/2023 || ${chalk.green("500.00")} ||        || ${chalk.green("1000.00")}\n` +
+                `27/05/2023 || ${chalk.green("500.00")} ||        || ${chalk.green("500.00")}`
 
             // Assert
             let actual = Statement.print(mockAccount);

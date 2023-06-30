@@ -55,7 +55,6 @@ describe('Account Class Tests', () => {
             // Act
             account1.withdraw(sum);
 
-
             // Assert
             expect(account1.getBalance()).toEqual(expected);
 
@@ -200,6 +199,7 @@ describe('Account Class Tests', () => {
 
             // Act
             account1.deposit(sum);
+
             // Assert
             expect(account1.getTransactions()).toHaveSize(1);
         }),
@@ -213,6 +213,7 @@ describe('Account Class Tests', () => {
 
             // Act
             account1.withdraw(sum);
+
             // Assert
             expect(account1.getTransactions()).toHaveSize(1);
         });

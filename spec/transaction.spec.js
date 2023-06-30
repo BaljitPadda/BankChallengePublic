@@ -2,15 +2,15 @@ import { Transaction } from "../src/Transaction.js";
 
 describe("Transaction Class Tests", () => {
 
-
     it("should be able to create a credit transaction with a date, type and amount", () => {
 
         // Arrange
-        let transaction = new Transaction(new Date(), "Credit", 500)
+        let date = new Date();
+        let transaction = new Transaction(date, "Credit", 500)
 
         // Act
         // Assert
-        expect(transaction.getDate()).toEqual(new Date());
+        expect(transaction.getDate()).toEqual(date);
         expect(transaction.getTypeOfTransaction()).toEqual("Credit");
         expect(transaction.getAmount()).toBe(500);
 
@@ -20,11 +20,12 @@ describe("Transaction Class Tests", () => {
     it("should be able to create a debit transaction with a date, type and amount", () => {
 
         // Arrange
-        let transaction = new Transaction(new Date(), "Debit", 500)
+        let date = new Date();
+        let transaction = new Transaction(date, "Debit", 500)
 
         // Act
         // Assert
-        expect(transaction.getDate()).toEqual(new Date());
+        expect(transaction.getDate()).toEqual(date);
         expect(transaction.getTypeOfTransaction()).toEqual("Debit");
         expect(transaction.getAmount()).toBe(500);
 
@@ -40,6 +41,7 @@ describe("Transaction Class Tests", () => {
             function () {
                 new Transaction(new Date(), "balloons", 500);
             }).toThrowError("Transactions can only be of type credit or debit.")
+
     }),
 
 
@@ -52,7 +54,6 @@ describe("Transaction Class Tests", () => {
                 function () {
                     new Transaction(new Date(), "Credit", "notNumericValue")
                 }).toThrowError("Transaction amount must be a numeric value greater than 0")
-
 
         }),
 
