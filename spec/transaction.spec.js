@@ -42,35 +42,34 @@ describe("Transaction Class Tests", () => {
                 new Transaction(new Date(), "balloons", 500);
             }).toThrowError("Transactions can only be of type credit or debit.")
 
-    }),
+    });
 
 
-        it("should ensure that the transaction amount is a numeric value greater than 0", () => {
+    it("should ensure that the transaction amount is a numeric value greater than 0", () => {
 
-            // Arrange
-            // Act
-            // Assert
-            expect(
-                function () {
-                    new Transaction(new Date(), "Credit", "notNumericValue")
-                }).toThrowError("Transaction amount must be a numeric value greater than 0")
+        // Arrange
+        // Act
+        // Assert
+        expect(
+            function () {
+                new Transaction(new Date(), "Credit", "notNumericValue")
+            }).toThrowError("Transaction amount must be a numeric value greater than 0")
 
-        }),
+    });
 
 
-        it("should throw an error if an invalid date type is provided", () => {
+    it("should throw an error if an invalid date type is provided", () => {
 
-            // Arrange
-            let date = "Not a date";
+        // Arrange
+        let date = "Not a date";
 
-            // Act
-            // Assert
-            expect(
-                function () {
-                    new Transaction(date, "Credit", 500)
-                }).toThrowError("Date argument must be of type Date.")
+        // Act
+        // Assert
+        expect(
+            function () {
+                new Transaction(date, "Credit", 500)
+            }).toThrowError("Date argument must be of type Date.")
 
-        });
-
+    });
 
 });
