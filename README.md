@@ -2,11 +2,11 @@
 
 ## Instructions
 ```
-Fork and clone to your machine.
+Please clone to your machine and navigate to the project directory ('bank-challenge').
 
 To run tests, please use 'npm test' in the terminal.
 
-To run the index.js file, please use 'node bank-challenge/src/index.js' in the terminal.
+To run the index.js file, please use 'node src/index.js' in the terminal.
 ```
 ## My Domain Models
 
@@ -18,12 +18,12 @@ User story 2: I want to be able to withdraw money from a bank account.
 User story 3: I want a bank account to store a list of transactions made.
 ```
 
-| Objects | Properties                        | Messages          | Output               |
-| ------- | --------------------------------- | ----------------- | -------------------- |
-| Account | balance @Integer                  | deposit @Integer  | @Void                |
-|         | transactions @Array[@Transaction] | withdraw @Integer | @Void                |
-|         |                                   | getBalance()      | @Integer             |
-|         |                                   | getTransactions() | @Array[@Transaction] |
+| Objects | Properties                        | Messages           | Output               |
+| ------- | --------------------------------- | ------------------ | -------------------- |
+| Account | balance @Integer                  | deposit(@Integer)  | @Void                |
+|         | transactions @Array[@Transaction] | withdraw(@Integer) | @Void                |
+|         |                                   | getBalance()       | @Integer             |
+|         |                                   | getTransactions()  | @Array[@Transaction] |
 
 <br/>
 
